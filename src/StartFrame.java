@@ -1,24 +1,22 @@
+
+
 import javax.swing.*;
 import java.awt.*;
 
-public class GameFrame  extends JFrame {
+public class StartFrame extends JFrame {
 
     private static int WIDTH;
     private static int HEIGHT;
 
 
-    public static void main(String[] args)
-    {
-         GameFrame frame = new GameFrame();
-        frame.setTitle("Blackjack");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }
 
-    public GameFrame()
+
+    public StartFrame()
     {
         getScreenSize();
+        setTitle("Blackjack");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
 
     }
 
@@ -33,8 +31,11 @@ public class GameFrame  extends JFrame {
 
     private void setFrameSize(Dimension screenSize)
     {
-        WIDTH = screenSize.width;
-        HEIGHT = screenSize.height;
+        WIDTH = screenSize.width/2;
+        HEIGHT = screenSize.height/2;
         setSize(WIDTH,HEIGHT);
     }
+
+
+
 }
