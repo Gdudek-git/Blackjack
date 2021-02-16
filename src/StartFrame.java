@@ -2,6 +2,8 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.URL;
 
 public class StartFrame extends JFrame {
@@ -21,9 +23,6 @@ public class StartFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new GridLayout(3,0));
-
-
-
         setLabels();
         add(title);
         setIcon();
@@ -77,10 +76,17 @@ public class StartFrame extends JFrame {
         startButton.setPreferredSize(new Dimension(300,50));
         startButton.setBackground(Color.gray);
 
-
-
-
         panelForButtonAndIcon.add(startButton);
+
+
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                setVisible(false);
+                GameFrame gameFrame = new GameFrame();
+                gameFrame.setVisible(true);
+            }
+        });
 
 
 
