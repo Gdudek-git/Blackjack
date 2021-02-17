@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
 
 public class GameFrame extends  JFrame{
 
@@ -8,6 +9,12 @@ public class GameFrame extends  JFrame{
     private JButton standButton;
     private JButton hitButton;
     private JPanel rootPanel;
+    private JPanel playerImageContainer;
+    private JPanel aiImageContainer;
+    private JLabel playerBalance;
+    private JLabel playerSum;
+    private JLabel aiSum;
+    private JSpinner betAmout;
 
 
     public GameFrame()
@@ -19,6 +26,7 @@ public class GameFrame extends  JFrame{
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             add(rootPanel);
+
     }
 
     private void setScreenSize()
