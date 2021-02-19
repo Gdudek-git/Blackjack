@@ -5,16 +5,16 @@ import java.net.URL;
 public class GameFrame extends  JFrame{
 
 
-    private JButton betButton;
-    private JButton standButton;
-    private JButton hitButton;
-    private JPanel rootPanel;
-    private JPanel playerImageContainer;
-    private JPanel aiImageContainer;
-    private JLabel playerBalance;
-    private JLabel playerSum;
-    private JLabel aiSum;
-    private JSpinner betAmout;
+    protected JButton betButton;
+    protected JButton standButton;
+    protected JButton hitButton;
+    protected JPanel rootPanel;
+    protected JPanel playerImageContainer;
+    protected JPanel aiImageContainer;
+    protected JLabel playerBalance;
+    protected JLabel playerSum;
+    protected JLabel aiSum;
+    protected JSpinner betAmout;
 
 
     public GameFrame()
@@ -24,8 +24,8 @@ public class GameFrame extends  JFrame{
             setTitle("Blackjack");
             setLocationRelativeTo(null);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
             add(rootPanel);
+
 
     }
 
@@ -35,6 +35,8 @@ public class GameFrame extends  JFrame{
         Dimension screenSize = kit.getScreenSize();
         setSize(screenSize.width-50,screenSize.height-50);
     }
+
+
 
 
 

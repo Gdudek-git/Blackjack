@@ -83,7 +83,7 @@ public class StartFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 setVisible(false);
-                GameFrame gameFrame = new GameFrame();
+                GameManager gameFrame = new GameManager();
                 gameFrame.setVisible(true);
             }
         });
