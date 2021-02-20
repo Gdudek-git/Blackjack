@@ -10,14 +10,35 @@ public class Card {
         this.cardSuit = cardSuit;
     }
 
-    public CardValue getCardValue()
+    public int getCardValue()
     {
-        return this.cardValue;
+        int value=0;
+        switch (this.cardValue.toString())
+        {
+            case "TWO": value=2;break;
+            case "THREE": value=3;break;
+            case "FOUR": value=4;break;
+            case "FIVE": value=5;break;
+            case "SIX": value=6;break;
+            case "SEVEN": value=7;break;
+            case "EIGHT": value=8;break;
+            case "NINE": value=9;break;
+            case "TEN": value=10;break;
+            case "JACK": value=10;break;
+            case "QUEEN": value=10;break;
+            case "KING": value=10;break;
+        }
+        return value;
     }
 
     public String getCardType()
     {
         return this.cardValue.toString() + " " + this.cardSuit.toString();
+    }
+
+    public String checkIfAce()
+    {
+        return this.cardValue.toString();
     }
 
 
