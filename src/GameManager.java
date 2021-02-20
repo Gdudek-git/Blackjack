@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class GameManager extends GameFrame implements ActionListener {
 
@@ -31,26 +32,55 @@ public class GameManager extends GameFrame implements ActionListener {
         {
             if(getBetAmount()) {
 
+              int tmp= checkDeckSize();
+
+              if(tmp<=10)
+              {
+                  deck.shuffleUsedCards();
+                  for(int i =0;i<deck.getUsedCardsDeckSize();i++)
+                  {
+                      deck.addCard(deck.getUsedCard(i));
+                  }
+                  deck.clearUsedCards();
+              }
                 balance -= betAmount;
                 setBetAmount(betAmount);
                 setUI();
                 fillPlayerHand(2);
                 fillDealerHand(2);
-                calculatePoints();
+                calculatePlayerPoints();
+                calculateDealerPoints();
                 setUI();
                 setButtonsAfterBet();
+                checkBlackjack();
             }
 
 
         }
         if(actionEvent.getActionCommand()=="Stand")
         {
-            System.out.println("dzialdsadasam");
+            hitButton.setEnabled(false);
+            while(dealerSumOfPoints<16) {
+                fillDealerHand(1);
+                dealerSumOfPoints = 0;
+                calculateDealerPoints();
+            }
+            setUI();
+            checkDealerPoints();
+
+
         }
 
         if(actionEvent.getActionCommand()=="Hit")
         {
-            System.out.println("dhhhhlam");
+
+            fillPlayerHand(1);
+            playerSumOfPoints=0;
+            calculatePlayerPoints();
+            setUI();
+            checkPlayerPoints();
+
+
         }
     }
 
@@ -151,23 +181,22 @@ public class GameManager extends GameFrame implements ActionListener {
         deck.removeCard();
     }
 
-    private void calculatePoints()
-    {
-        for(Card card: playerHand)
-        {
-            if(card.checkIfAce()=="ACE") {
+    private void calculatePlayerPoints() {
+        for (Card card : playerHand) {
+            if (card.checkIfAce() == "ACE") {
                 if (playerSumOfPoints >= 11) {
                     playerSumOfPoints += 2;
                 } else {
                     playerSumOfPoints += 11;
                 }
+            } else {
+                playerSumOfPoints += card.getCardValue();
             }
-            else
-                {
-
-                 playerSumOfPoints+=card.getCardValue();
-                }
         }
+    }
+
+    private void calculateDealerPoints()
+    {
         for(Card card: dealerHand)
         {
             if(card.checkIfAce()=="ACE") {
@@ -179,10 +208,90 @@ public class GameManager extends GameFrame implements ActionListener {
             }
             else
             {
-               dealerSumOfPoints+=card.getCardValue();
+                dealerSumOfPoints+=card.getCardValue();
             }
         }
     }
+
+    private void checkPlayerPoints()
+    {
+
+        if(playerSumOfPoints>21)
+        {
+            JOptionPane.showMessageDialog(gameFrame, "You lost");
+            resetGame();
+        }
+        if(playerSumOfPoints==21)
+        {
+            JOptionPane.showMessageDialog(gameFrame, "You won: "+ betAmount*2);
+            balance+=betAmount*2;
+            resetGame();
+        }
+    }
+
+    private void checkBlackjack()
+    {
+        if(playerSumOfPoints==21)
+        {
+            JOptionPane.showMessageDialog(gameFrame, "You won: "+ betAmount*2);
+            balance+=betAmount*2;
+            resetGame();
+        }
+        if(dealerSumOfPoints==21)
+        {
+            JOptionPane.showMessageDialog(gameFrame, "You lost");
+            resetGame();
+        }
+    }
+
+    private void checkDealerPoints()
+    {
+
+        if(dealerSumOfPoints>21)
+        {
+            JOptionPane.showMessageDialog(gameFrame, "You won: "+ betAmount*2);
+            balance+=betAmount*2;
+            resetGame();
+        }
+        else if(dealerSumOfPoints>playerSumOfPoints)
+        {
+            JOptionPane.showMessageDialog(gameFrame, "You lost");
+            resetGame();
+        }
+        else if(dealerSumOfPoints==playerSumOfPoints)
+        {
+            JOptionPane.showMessageDialog(gameFrame, "Tie ");
+            balance+=betAmount;
+            resetGame();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(gameFrame, "You won: "+ betAmount*2);
+            balance+=betAmount*2;
+            resetGame();
+        }
+    }
+
+
+    private void resetGame()
+    {
+        hitButton.setEnabled(false);
+        standButton.setEnabled(false);
+        betButton.setEnabled(true);
+        playerHand.clear();
+        dealerHand.clear();
+        playerSumOfPoints=0;
+        dealerSumOfPoints=0;
+        setUI();
+    }
+
+    private int checkDeckSize()
+    {
+        return deck.getDeckSize();
+    }
+
+
+
 
 
 

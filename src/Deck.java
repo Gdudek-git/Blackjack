@@ -36,7 +36,6 @@ public class Deck  {
     {
         usedCards.add(cards.get(0));
         cards.remove(0);
-
     }
 
     public void addCard(Card cardToAdd)
@@ -59,6 +58,19 @@ public class Deck  {
         return cards.size();
     }
 
+    public int getUsedCardsDeckSize()
+    {
+        return usedCards.size();
+    }
+    public Card getUsedCard(int index)
+    {
+        return usedCards.get(index);
+    }
+
+    public void clearUsedCards()
+    {
+        usedCards.clear();
+    }
 
 
 
