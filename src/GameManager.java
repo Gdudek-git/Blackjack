@@ -12,6 +12,7 @@ public class GameManager extends GameFrame implements ActionListener {
     private int dealerSumOfPoints;
     private int playerSumOfPoints;
     private int betAmount;
+    private Card hiddenDealerCard;
 
     private ArrayList<Card> playerHand =  new ArrayList<Card>();
     private ArrayList<Card> dealerHand = new ArrayList<Card>();
@@ -48,6 +49,7 @@ public class GameManager extends GameFrame implements ActionListener {
                 setUI();
                 fillPlayerHand(2);
                 fillDealerHand(2);
+                hideSecondDealerCard();
                 calculatePlayerPoints();
                 calculateDealerPoints();
                 setUI();
@@ -55,10 +57,11 @@ public class GameManager extends GameFrame implements ActionListener {
                 checkBlackjack();
             }
 
-
         }
         if(actionEvent.getActionCommand()=="Stand")
         {
+            dealerHand.add(hiddenDealerCard);
+            calculateDealerPoints();
             hitButton.setEnabled(false);
             while(dealerSumOfPoints<16) {
                 fillDealerHand(1);
@@ -290,7 +293,11 @@ public class GameManager extends GameFrame implements ActionListener {
         return deck.getDeckSize();
     }
 
-
+private void hideSecondDealerCard()
+{
+    hiddenDealerCard = dealerHand.get(1);
+    dealerHand.remove(1);
+}
 
 
 
