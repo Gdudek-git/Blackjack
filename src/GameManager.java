@@ -1,6 +1,8 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -13,6 +15,8 @@ public class GameManager extends GameFrame implements ActionListener {
     private int playerSumOfPoints;
     private int betAmount;
     private Card hiddenDealerCard;
+    private MyImage myImage=new MyImage();
+    private ImageIcon cardIcon;
 
     private ArrayList<Card> playerHand =  new ArrayList<Card>();
     private ArrayList<Card> dealerHand = new ArrayList<Card>();
@@ -165,6 +169,7 @@ public class GameManager extends GameFrame implements ActionListener {
         for(int i =0;i<cardsAmount;i++)
         {
             playerHand.add(deck.getCard());
+            addCardImage(deck.getCard(),true);
             deleteCardFromDeck();
         }
     }
@@ -174,6 +179,7 @@ public class GameManager extends GameFrame implements ActionListener {
         for(int i =0;i<cardsAmount;i++)
         {
             dealerHand.add(deck.getCard());
+            addCardImage(deck.getCard(),false);
             deleteCardFromDeck();
         }
     }
@@ -285,6 +291,8 @@ public class GameManager extends GameFrame implements ActionListener {
         dealerHand.clear();
         playerSumOfPoints=0;
         dealerSumOfPoints=0;
+        playerImageContainer.removeAll();
+        dealerImageContainer.removeAll();
         setUI();
     }
 
@@ -297,6 +305,22 @@ private void hideSecondDealerCard()
 {
     hiddenDealerCard = dealerHand.get(1);
     dealerHand.remove(1);
+}
+
+
+private void addCardImage(Card card,boolean playerDeck)
+{
+    URL imageUrl = this.getClass().getResource("/cards/" +  myImage.getPath(card));
+    cardIcon = new ImageIcon(new ImageIcon(imageUrl).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+    if(playerDeck)
+    {
+        playerImageContainer.add(new JLabel(cardIcon));
+    }
+    else
+    {
+        dealerImageContainer.add(new JLabel(cardIcon));
+    }
+
 }
 
 

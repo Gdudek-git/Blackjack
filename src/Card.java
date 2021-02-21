@@ -33,7 +33,7 @@ public class Card {
 
     public String getCardType()
     {
-        return this.cardValue.toString() + " " + this.cardSuit.toString();
+        return this.cardValue.toString() + this.cardSuit.toString();
     }
 
     public String checkIfAce()

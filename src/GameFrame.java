@@ -11,7 +11,7 @@ public class GameFrame extends  JFrame{
     protected JButton hitButton;
     protected JPanel rootPanel;
     protected JPanel playerImageContainer;
-    protected JPanel aiImageContainer;
+    protected JPanel dealerImageContainer;
     protected JLabel playerBalance;
     protected JLabel playerSum;
     protected JLabel dealerSum;
