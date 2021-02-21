@@ -28,6 +28,7 @@ public class Card {
             case "QUEEN": value=10;break;
             case "KING": value=10;break;
         }
+
         return value;
     }
 
