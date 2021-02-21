@@ -16,6 +16,8 @@ public class GameFrame extends  JFrame{
     protected JLabel playerSum;
     protected JLabel dealerSum;
     protected JSpinner betAmountSpinner;
+    private JLabel background;
+    private ImageIcon backgroundImage;
 
 
     public GameFrame()
@@ -25,9 +27,9 @@ public class GameFrame extends  JFrame{
             setTitle("Blackjack");
             setLocationRelativeTo(null);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
             add(rootPanel);
             setJSpinnerToNumericOnly();
-
 
     }
 
@@ -43,6 +45,8 @@ public class GameFrame extends  JFrame{
         JFormattedTextField txt = ((JSpinner.NumberEditor) betAmountSpinner.getEditor()).getTextField();
         ((NumberFormatter) txt.getFormatter()).setAllowsInvalid(false);
     }
+
+
 
 
 

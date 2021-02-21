@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.concurrent.TimeUnit;
 
 public class GameManager extends GameFrame implements ActionListener {
 
@@ -65,8 +66,10 @@ public class GameManager extends GameFrame implements ActionListener {
         if(actionEvent.getActionCommand()=="Stand")
         {
             dealerHand.add(hiddenDealerCard);
+            dealerSumOfPoints = 0;
             calculateDealerPoints();
             hitButton.setEnabled(false);
+            unhideDealerCardImage();
             while(dealerSumOfPoints<16) {
                 fillDealerHand(1);
                 dealerSumOfPoints = 0;
@@ -148,15 +151,6 @@ public class GameManager extends GameFrame implements ActionListener {
 
     }
 
-    private void threadSleep()
-    {
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
     private void setButtonsAfterBet()
     {
         betButton.setEnabled(false);
@@ -178,9 +172,15 @@ public class GameManager extends GameFrame implements ActionListener {
     {
         for(int i =0;i<cardsAmount;i++)
         {
-            dealerHand.add(deck.getCard());
             addCardImage(deck.getCard(),false);
+            dealerHand.add(deck.getCard());
             deleteCardFromDeck();
+
+        }
+
+        if(cardsAmount==2)
+        {
+            hideDealerCardImage();
         }
     }
 
@@ -314,14 +314,35 @@ private void addCardImage(Card card,boolean playerDeck)
     cardIcon = new ImageIcon(new ImageIcon(imageUrl).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
     if(playerDeck)
     {
-        playerImageContainer.add(new JLabel(cardIcon));
+       playerImageContainer.add(new JLabel(cardIcon));
     }
     else
     {
         dealerImageContainer.add(new JLabel(cardIcon));
     }
 
+
+
+
 }
+
+private void hideDealerCardImage()
+{
+    dealerImageContainer.remove(1);
+    URL imageUrl = this.getClass().getResource("/cards/REDBACK.PNG");
+    ImageIcon hiddenCardIcon=new ImageIcon(new ImageIcon(imageUrl).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+    dealerImageContainer.add(new JLabel(hiddenCardIcon));
+
+}
+
+private void unhideDealerCardImage()
+{
+    dealerImageContainer.remove(1);
+    addCardImage(hiddenDealerCard,false);
+
+}
+
+
 
 
 

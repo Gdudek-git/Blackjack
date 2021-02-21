@@ -1,6 +1,8 @@
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class MyImage {
+public class MyImage  {
 
     private String path;
 
@@ -11,4 +13,6 @@ public class MyImage {
         path=card.getCardType()+".png";
         return path;
     }
+
+
 }
