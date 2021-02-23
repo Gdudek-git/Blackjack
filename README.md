@@ -1,2 +1,2 @@
 # Blackjack
-My first simple java project made in free time.
+My first simple java card game made in free time.
