@@ -329,7 +329,7 @@ private void addCardImage(Card card,boolean playerDeck)
 private void hideDealerCardImage()
 {
     dealerImageContainer.remove(1);
-    URL imageUrl = this.getClass().getResource("/cards/REDBACK.PNG");
+    URL imageUrl = this.getClass().getResource("/cards/REDBACK.png");
     ImageIcon hiddenCardIcon=new ImageIcon(new ImageIcon(imageUrl).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
     dealerImageContainer.add(new JLabel(hiddenCardIcon));
 

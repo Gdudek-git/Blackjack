@@ -95,10 +95,10 @@ public class StartFrame extends JFrame {
     private void setIcon()
     {
         panelForButtonAndIcon = new JPanel();
-        URL iconUrl = this.getClass().getResource("/icon.png");
-        buttonIcon = new ImageIcon(new ImageIcon(iconUrl).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
-        JLabel label = new JLabel(buttonIcon);
-        panelForButtonAndIcon.add(label);
+       URL iconUrl = this.getClass().getResource("/icon.png");
+       buttonIcon = new ImageIcon(new ImageIcon(iconUrl).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+       JLabel label = new JLabel(buttonIcon);
+       panelForButtonAndIcon.add(label);
         panelForButtonAndIcon.setBackground(Color.lightGray);
 
     }
